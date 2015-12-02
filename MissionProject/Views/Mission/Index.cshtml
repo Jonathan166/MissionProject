@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MissionProject.Models.Mission>
+
+<h2>Missions</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Search", "Mission"))
+{
+    @Html.Editor("SearchBox")
+    <input type="submit" value="Search" />
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.mutant.MutantName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status.StatusName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MissionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssignDate)
+        </th>
+        <th>
+            Revise
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.mutant.MutantName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status.StatusName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MissionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssignDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MissionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MissionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MissionId })
+        </td>
+    </tr>
+}
+
+</table>
